@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Classification</title>
+  <style>
+    /* Add some basic styling */
+    #loading {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -220%);
+    }
+
+    /* Customize appearance with CSS */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #f0e5e500;
+      font-size: 1.3em;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    h1 {
+      color: Violet;
+      margin-bottom: 30px;
+      -webkit-text-stroke-width: 0.5px;
+      -webkit-text-stroke-color: rgb(247, 46, 170);
+    }
+
+    #image-form {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      box-shadow: 3px 4px 5px black;
+      transition: background-color 0.5s, color 0.5s;
+
+
+    }
+
+    img {
+      max-width: 250px;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    #image-container {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+
+    #image-container p {
+      text-align: center;
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    #drop {
+      margin-bottom: 80px;
+
+    }
+
+    .Select_model {
+      font-family: arial;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1>Atoll Semantic Segmentaion</h1>
+
+  <form id="image-form" action="{{ url_for('predict')}}" method="post" enctype="multipart/form-data">
+
+    <div>
+      <p class="Select_model"> Select Model and Image </p>
+      <select name="model" id="drop">
+        <option value="RGB">RGB</option>
+        <option value="NIR">NIR</option>
+        <option value="SpecInd">SpecInd</option>
+        <option value="SSR">SSR</option>
+      </select>
+      <input type="file" id="file-input" name="image" required="required" />
+      <button type="submit" class="btn">Predict Class</button>
+    </div>
+  </form>
+
+  <div id="image-container">
+    <div>
+      <!-- Display the selected image -->
+      <img id="selected-image" src="" style="display: none;" />
+      <p id="original-text"></p>
+    </div>
+
+    <!-- Loading spinner -->
+    <div id="loading">Loading...</div>
+
+    <div>
+      <!-- Display the output image -->
+      <img id="output-image" src="">
+      <p id="predicted-text"></p>
+    </div>
+  </div>
+
+  <script>
+    // Display the selected image
+    document.getElementById('file-input').onchange = function (evt) {
+      var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+      // FileReader support
+      if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+          document.getElementById('selected-image').src = fr.result;
+          document.getElementById('selected-image').style.display = 'block';
+          document.getElementById('original-text').textContent = "Original Image";
+        }
+        fr.readAsDataURL(files[0]);
+      }
+    }
+
+    // Display loading spinner on form submit
+    $('#image-form').submit(function (e) {
+      $('#loading').show();
+      var form_data = new FormData($('#image-form')[0]);
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+          // Hide loading spinner and display output image
+          $('#loading').hide();
+          $('#output-image').attr('src', 'data:image/jpeg;base64,' + data.output_image);
+          document.getElementById('predicted-text').textContent = "Predicted Image";
+        },
+        error: function (data) {
+          // Hide loading spinner and display error message
+          $('#loading').hide();
+          alert('Error: ' + data);
+        }
+      });
+      e.preventDefault();
+    });
+  </script>
+  </div>
+</body>
+
+</html>
