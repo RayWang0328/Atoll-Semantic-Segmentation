@@ -63,9 +63,9 @@ def predict():
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img = cv2.resize(img,(256,256), interpolation = cv2.INTER_CUBIC)
 
-    # if standardize() is a function that you've defined elsewhere to preprocess the image
+
     image = standardize(img)
-    image_array = np.expand_dims(image, axis=0)  # add batch dimension
+    image_array = np.expand_dims(image, axis=0)  
 
     prediction = model.predict(image_array)
     output = np.argmax(prediction, axis=3)
