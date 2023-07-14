@@ -38,8 +38,6 @@ def convert(img):
     rgb_img[img == 1] = [220,57,18] # Red
     rgb_img[img == 2] = [255,153,0] # Yellow
 
-  #  rgb_img = cv2.resize(rgb_img, (256,256))
-
     return  rgb_img
 
 @app.route('/')
@@ -93,4 +91,5 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8000)
