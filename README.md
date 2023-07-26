@@ -11,19 +11,19 @@ This is a web application that allows for easy segmentation of Atoll Morphometri
 For Windows Users: 
 
 Change Directory and activate virtual environment
-```javascript
+```
 cd myproject
 py -3 -m venv .venv
 .venv\Scripts\activate
 ```
 
 Install Required libraries:
-```javascript
+```
 pip3 install -r requirements.txt
 ```
 
 Run Application: 
-```javascript
+```
 python app.py
 ```
 
@@ -31,18 +31,18 @@ python app.py
 For Mac Users: 
 
 Change Directory and activate virtual environment
-```javascript
+```
 cd myproject
-python3 -m venv env
+python3 -m venv .venv
 . .venv/bin/activate
 ```
 
 Install Required Libraries 
-```javascript
+```
 pip3 install -r requirements.txt
 ```
 
 Run Application: 
-```javascript
+```
 python app.py
 ```
