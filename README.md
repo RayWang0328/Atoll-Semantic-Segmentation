@@ -1,12 +1,12 @@
 
-# Atoll Segmentation Web App Demo
+# Atoll Segmentation Web App Demo ⚙️
 
-This is a web application that allows for easy segmentation of Atoll Morphometrics. Currently, four models are supported, each of a different image type: RGB, NIR, SpecInd, and SSR.
+This is a web application that allows for easy segmentation of Atoll Morphometrics. Currently, four models are supported, each of a different image type: RGB, NIR, SpecInd, and SSR.  
+
+[Original Project](https://github.com/Tahiya31/colby_atoll)
 
 
-
-
-## Installation
+## Installation 🛠️
 
 For Windows Users: 
 
