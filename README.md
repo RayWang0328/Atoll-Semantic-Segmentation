@@ -9,6 +9,7 @@ This is a web application that allows for easy segmentation of Atoll Morphometri
 
 https://github.com/RayWang0328/Atoll-Semantic-Segmentation/assets/19866871/10eb4fb0-96d7-429e-b3b5-8b92da9be6dc
 
+[Ray_Wang_Atoll.pdf](https://github.com/RayWang0328/Atoll-Semantic-Segmentation/files/12219641/Ray_Wang_Atoll.pdf)
 
 
 ## Installation 🛠️
