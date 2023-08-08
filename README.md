@@ -6,7 +6,7 @@ Climate change poses significanrt threats to the stability and sustainability of
 This is a web application that allows for easy segmentation of Atoll Morphometrics. The backend supports four models, each of a different image type that was all trained from scratch. The four image types are: RGB, NIR, SpecInd, and SSR.  
 
 ## 🌟 Project Overview : 
-* Dataset: 288 distnct Atoll Images provided by Dr. Alejandra Geiger-Ortiz
+* Dataset: 288 distinct Atoll Images provided by Dr. Alejandra Geiger-Ortiz
 * Model Training: Tensorflow and [Segmentation Gym](https://github.com/Doodleverse/segmentation_gym)
 * Web App: HTML/CSS, Javascript, Flask
 
